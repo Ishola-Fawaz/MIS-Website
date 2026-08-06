@@ -48,13 +48,17 @@ ticket holders directly), and the `*Email` addresses (currently
 
 ## Design system
 
-- **Brand colors** — deep forest green + gold, sampled from
-  [`public/MIS_LOGO.jpg`](../public/MIS_LOGO.jpg). Tokens live in
-  [`src/app/globals.css`](../src/app/globals.css) as `--brand-*` /
-  `--gold-*` / `--cream*` CSS variables, registered in Tailwind v4 via
-  `@theme inline` so they're usable as `bg-brand-900`, `text-gold-300`,
-  etc. The site is dark-themed only — there's no light-mode toggle,
-  matching the logo's own dark background.
+- **Brand colors** (2026 refresh) — deep forest green + chartreuse accent:
+  `#051F1A` (background/darkest), `#009E73` (core brand green), `#C1DC01`
+  (accent — CTAs, highlights, active states), `#FAF6EE` (cream
+  foreground). Tokens live in [`src/app/globals.css`](../src/app/globals.css)
+  as `--brand-*` / `--gold-*` / `--cream*` CSS variables, registered in
+  Tailwind v4 via `@theme inline` so they're usable as `bg-brand-900`,
+  `text-gold-300`, etc. **Note:** the `--gold-*` / `gold-*` token names are
+  a legacy holdover — they now hold the chartreuse accent scale
+  (`#C1DC01` family), not gold. Kept as-is to avoid a 150+ occurrence
+  rename across the codebase; treat `gold-*` as "accent" when reading it.
+  The site is dark-themed only — there's no light-mode toggle.
 - **Typography** — three-family system, self-hosted via `next/font/local`
   (no Google Fonts / CDN link tags):
   - `font-heading` → Clash Display (headings only, weights 500/600/700)
@@ -67,13 +71,16 @@ ticket holders directly), and the `*Email` addresses (currently
   If you need another weight, fetch it from Fontshare's CSS API
   (`api.fontshare.com/v2/css?f[]=clash-display@<weight>`) and download the
   `woff2` URL it returns — don't add a new npm dependency for this.
-- **Logo usage** — `public/MIS_LOGO.jpg` is the only logo asset (1280×1280
-  JPG, full lockup with icon + wordmark baked in). It's used at small
-  sizes in the Navbar/Footer (`object-cover`, ~44px) and large in
-  metadata/OG. There's no separate vector icon — `AmbientMark.tsx` is a
-  deliberately abstract decorative shape (rotational petals, echoing the
-  logo's geometry) used for background flourish; it is *not* a
-  reproduction of the real logo and shouldn't be treated as one.
+  - The wordmark logo (`public/MIS_LOGO_wordmark.png`) is set in Aeonik —
+    that's baked into the logo image itself, not a web font choice, so
+    there's nothing to wire up in code for it.
+- **Logo usage** — `public/MIS_LOGO_wordmark.png` is the primary lockup
+  used in the Navbar/Footer; `public/MIS_LOGO.jpg` (1280×1280, icon +
+  wordmark combined) is used for metadata/OG images. There's no separate
+  vector icon — `AmbientMark.tsx` is a deliberately abstract decorative
+  shape (rotational petals, echoing the logo's geometry) used for
+  background flourish; it is *not* a reproduction of the real logo and
+  shouldn't be treated as one.
 
 ## Information architecture
 

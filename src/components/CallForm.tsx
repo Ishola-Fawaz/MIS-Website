@@ -7,7 +7,7 @@ import Button from "./Button";
 export type CallFormField = {
   name: string;
   label: string;
-  type: "text" | "email" | "textarea";
+  type: "text" | "email" | "tel" | "textarea";
   placeholder?: string;
   required?: boolean;
 };

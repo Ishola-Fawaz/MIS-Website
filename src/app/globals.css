@@ -1,27 +1,28 @@
 @import "tailwindcss";
 
 :root {
-  --background: #081613;
-  --foreground: #f6f4ee;
+  --background: #051f1a;
+  --foreground: #faf6ee;
 
-  /* Brand — Muslim Innovators Summit */
-  --brand-950: #081613;
-  --brand-900: #0d211c;
-  --brand-800: #123028;
-  --brand-700: #1a4136;
-  --brand-600: #235248;
-  --brand-500: #2f6b57;
-  --brand-400: #4c8b73;
-  --brand-300: #7fb8a4;
-  --brand-200: #b3d9cb;
+  /* Brand — Muslim Innovators Summit (2026 refresh) */
+  --brand-950: #051f1a;
+  --brand-900: #043026;
+  --brand-800: #044031;
+  --brand-700: #035943;
+  --brand-600: #027757;
+  --brand-500: #009e73;
+  --brand-400: #2cae89;
+  --brand-300: #79cab0;
+  --brand-200: #c8e6d7;
 
-  --gold-500: #b9843a;
-  --gold-400: #d4a24c;
-  --gold-300: #e6c179;
-  --gold-200: #f1dcab;
+  /* Accent — chartreuse, replaces the old gold accent scale */
+  --gold-500: #9ab001;
+  --gold-400: #c1dc01;
+  --gold-300: #d1e541;
+  --gold-200: #ddec73;
 
-  --cream: #f6f4ee;
-  --cream-dim: #cfd6d0;
+  --cream: #faf6ee;
+  --cream-dim: #d3d8d0;
 }
 
 @theme inline {

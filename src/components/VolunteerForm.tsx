@@ -11,6 +11,7 @@ import {
   Edit02Icon,
   FirstAidKitIcon,
   IdentificationIcon,
+  LiveStreaming01Icon,
   Megaphone01Icon,
   MoneyBag01Icon,
   Note01Icon,
@@ -43,6 +44,7 @@ const CATEGORIES: Category[] = [
       { label: "Videography", icon: Video01Icon },
       { label: "Photography", icon: Camera01Icon },
       { label: "Vlogging", icon: Video02Icon },
+      { label: "Livestreaming", icon: LiveStreaming01Icon },
     ],
   },
   {
@@ -86,6 +88,7 @@ const CATEGORIES: Category[] = [
 export default function VolunteerForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [availability, setAvailability] = useState("");
   const [selectedRoles, setSelectedRoles] = useState<Set<string>>(new Set());
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
@@ -113,7 +116,8 @@ export default function VolunteerForm() {
     setSubmitted(true);
   }
 
-  const canSubmit = name.trim() && email.trim() && selectedRoles.size > 0;
+  const canSubmit =
+    name.trim() && email.trim() && phone.trim() && selectedRoles.size > 0;
 
   if (submitted) {
     return (
@@ -147,6 +151,7 @@ export default function VolunteerForm() {
             clearDepartment();
             setName("");
             setEmail("");
+            setPhone("");
             setAvailability("");
           }}
           className="mt-2 text-xs font-medium text-gold-300 underline-offset-4 transition-colors hover:text-gold-200 hover:underline"
@@ -166,7 +171,7 @@ export default function VolunteerForm() {
         <h3 className="font-heading text-lg font-semibold text-cream">
           Your details
         </h3>
-        <div className="grid gap-5 sm:grid-cols-2">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           <label className="flex flex-col gap-2">
             <span className="text-sm font-medium text-cream">
               Full name<span className="text-gold-400"> *</span>
@@ -188,6 +193,18 @@ export default function VolunteerForm() {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              className="w-full rounded-full border border-brand-700 bg-brand-950/60 px-4 py-3 text-sm text-cream placeholder:text-cream-dim/60 outline-none transition-colors duration-200 focus:border-gold-400"
+            />
+          </label>
+          <label className="flex flex-col gap-2">
+            <span className="text-sm font-medium text-cream">
+              Phone number<span className="text-gold-400"> *</span>
+            </span>
+            <input
+              type="tel"
+              required
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
               className="w-full rounded-full border border-brand-700 bg-brand-950/60 px-4 py-3 text-sm text-cream placeholder:text-cream-dim/60 outline-none transition-colors duration-200 focus:border-gold-400"
             />
           </label>

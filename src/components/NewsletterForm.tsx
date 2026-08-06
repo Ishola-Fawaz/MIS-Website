@@ -4,7 +4,7 @@ import { useState } from "react";
 import { EVENT } from "@/lib/data";
 import Button from "./Button";
 
-export default function NewsletterForm() {
+export default function NewsletterForm({ light = false }: { light?: boolean }) {
   const [email, setEmail] = useState("");
 
   return (
@@ -25,7 +25,11 @@ export default function NewsletterForm() {
         placeholder="you@example.com"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        className="w-full rounded-full border border-brand-700 bg-brand-900/70 px-5 py-3 text-sm text-cream placeholder:text-cream-dim/60 outline-none focus:border-gold-400"
+        className={`w-full rounded-full border px-5 py-3 text-sm outline-none ${
+          light
+            ? "border-brand-950/15 bg-white text-brand-950 placeholder:text-brand-600/50 focus:border-brand-500"
+            : "border-brand-700 bg-brand-900/70 text-cream placeholder:text-cream-dim/60 focus:border-gold-400"
+        }`}
       />
       <Button type="submit" className="shrink-0">
         Notify Me
