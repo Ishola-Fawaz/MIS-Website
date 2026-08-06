@@ -31,6 +31,12 @@ export default function SpeakPage() {
               { name: "name", label: "Full name", type: "text", required: true },
               { name: "email", label: "Email", type: "email", required: true },
               {
+                name: "phone",
+                label: "Phone number",
+                type: "tel",
+                required: true,
+              },
+              {
                 name: "topic",
                 label: "Proposed talk title or topic",
                 type: "text",
