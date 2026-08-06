@@ -127,7 +127,7 @@ export default function Footer() {
       <div className="border-t border-white/5">
         <Container className="flex flex-col items-center justify-between gap-3 py-6 text-xs text-cream-dim/70 sm:flex-row">
           <p>&copy; {new Date().getFullYear()} Muslim Innovators Summit.</p>
-          <p>{EVENT.cohort} &middot; {EVENT.dateLabel}</p>
+          <p>{EVENT.cohort} &middot; Coming soon</p>
         </Container>
       </div>
     </footer>

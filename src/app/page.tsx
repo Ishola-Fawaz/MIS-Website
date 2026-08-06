@@ -15,7 +15,6 @@ import {
   Rocket01Icon,
   SparklesIcon,
   StudentIcon,
-  Target01Icon,
   UserGroup03Icon,
   UserMultiple02Icon,
 } from "hugeicons-react";
@@ -37,7 +36,7 @@ import {
 } from "@/lib/data";
 
 const CAPACITY_ICONS = [UserMultiple02Icon, Building05Icon, Location01Icon, SparklesIcon];
-const WHY_ICONS = [ChartLineData02Icon, UserGroup03Icon, Mosque01Icon, Target01Icon];
+const WHY_ICONS = [ChartLineData02Icon, Mosque01Icon];
 const FORMAT_ICONS = [Mic01Icon, UserGroup03Icon, CodeCircleIcon, Idea01Icon];
 const PERSONA_ICONS = [Rocket01Icon, LaptopProgrammingIcon, StudentIcon, MoneyExchange03Icon];
 
@@ -126,18 +125,18 @@ export default function Home() {
       </section>
 
       {/* Capacity strip */}
-      <section className="border-y border-white/5 bg-brand-900/40">
+      <section className="border-y border-brand-950/10 bg-cream">
         <Container className="grid grid-cols-2 gap-8 py-12 sm:grid-cols-4">
           {CAPACITY_FACTS.map((fact, index) => {
             const Icon = CAPACITY_ICONS[index];
             return (
               <Reveal key={fact.label} delay={index * 80}>
                 <div className="flex flex-col items-center gap-2 text-center">
-                  <Icon size={22} className="text-gold-400" />
-                  <span className="font-mono text-3xl font-semibold text-gold-300 sm:text-4xl">
+                  <Icon size={22} className="text-brand-600" />
+                  <span className="font-mono text-3xl font-semibold text-brand-700 sm:text-4xl">
                     {fact.value}
                   </span>
-                  <span className="text-sm text-cream-dim">{fact.label}</span>
+                  <span className="text-sm text-brand-600/80">{fact.label}</span>
                 </div>
               </Reveal>
             );
@@ -215,12 +214,13 @@ export default function Home() {
       </section>
 
       {/* Who it's for */}
-      <section id="who" className="py-24 sm:py-32">
+      <section id="who" className="border-t border-brand-950/10 bg-cream py-24 sm:py-32">
         <Container className="flex flex-col gap-16">
           <Reveal>
             <SectionHeading
               eyebrow="Who it's for"
               title="Built for four kinds of builder."
+              light
             />
           </Reveal>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -228,14 +228,14 @@ export default function Home() {
               const Icon = PERSONA_ICONS[index];
               return (
                 <Reveal key={persona.title} delay={index * 80}>
-                  <div className="flex h-full flex-col gap-3 rounded-2xl border border-brand-800 bg-brand-900/40 p-7 transition-all duration-300 hover:-translate-y-1 hover:border-gold-400/50">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-800 text-gold-300">
+                  <div className="flex h-full flex-col gap-3 rounded-2xl border border-brand-950/10 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-brand-500/40 hover:shadow-md">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-950/5 text-brand-600">
                       <Icon size={20} />
                     </span>
-                    <h3 className="font-heading text-base font-semibold text-cream">
+                    <h3 className="font-heading text-base font-semibold text-brand-950">
                       {persona.title}
                     </h3>
-                    <p className="text-sm leading-6 text-cream-dim">
+                    <p className="text-sm leading-6 text-brand-700">
                       {persona.description}
                     </p>
                   </div>
@@ -247,25 +247,26 @@ export default function Home() {
       </section>
 
       {/* Get involved */}
-      <section className="border-t border-white/5 bg-brand-900/30 py-24 sm:py-32">
+      <section className="border-t border-brand-950/10 bg-cream py-24 sm:py-32">
         <Container className="flex flex-col gap-16">
           <Reveal>
             <SectionHeading
               eyebrow="Get Involved"
               title="MIS 1.0's lineup and crew aren't set yet."
               description="No speakers are confirmed and no volunteer team is locked in — because we're building both from scratch, with you."
+              light
             />
           </Reveal>
           <div className="grid gap-6 sm:grid-cols-2">
             <Reveal>
-              <div className="flex h-full flex-col items-start gap-4 rounded-2xl border border-brand-800 bg-brand-950/60 p-8 transition-all duration-300 hover:-translate-y-1 hover:border-gold-400/50">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-800 text-gold-300">
+              <div className="flex h-full flex-col items-start gap-4 rounded-2xl border border-brand-950/10 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-brand-500/40 hover:shadow-md">
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-950/5 text-brand-600">
                   <Mic01Icon size={20} />
                 </span>
-                <h3 className="font-heading text-lg font-semibold text-cream">
+                <h3 className="font-heading text-lg font-semibold text-brand-950">
                   Speak at MIS 1.0
                 </h3>
-                <p className="text-sm leading-6 text-cream-dim">
+                <p className="text-sm leading-6 text-brand-700">
                   Have a product shipped, a lesson learned the hard way, or a
                   hard problem you&apos;re still working on? We want to hear it.
                 </p>
@@ -279,14 +280,14 @@ export default function Home() {
               </div>
             </Reveal>
             <Reveal delay={80}>
-              <div className="flex h-full flex-col items-start gap-4 rounded-2xl border border-brand-800 bg-brand-950/60 p-8 transition-all duration-300 hover:-translate-y-1 hover:border-gold-400/50">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-800 text-gold-300">
+              <div className="flex h-full flex-col items-start gap-4 rounded-2xl border border-brand-950/10 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-brand-500/40 hover:shadow-md">
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-950/5 text-brand-600">
                   <UserGroup03Icon size={20} />
                 </span>
-                <h3 className="font-heading text-lg font-semibold text-cream">
+                <h3 className="font-heading text-lg font-semibold text-brand-950">
                   Volunteer with us
                 </h3>
-                <p className="text-sm leading-6 text-cream-dim">
+                <p className="text-sm leading-6 text-brand-700">
                   Registration, room logistics, speaker support, buildathon
                   facilitation &mdash; MIS 1.0 runs on volunteers.
                 </p>
@@ -320,13 +321,14 @@ export default function Home() {
       </section>
 
       {/* Sponsor CTA */}
-      <section className="border-t border-white/5 bg-brand-900/30 py-24 sm:py-32">
+      <section className="border-t border-brand-950/10 bg-cream py-24 sm:py-32">
         <Container className="flex flex-col items-center gap-6 text-center">
           <Reveal>
             <SectionHeading
               eyebrow="Partner with us"
               title="Back the founding edition."
               description="We're putting together a one-pager on how partners can support MIS 1.0. Email us and we'll send it over as soon as it's ready."
+              light
             />
           </Reveal>
           <Reveal delay={100}>
@@ -342,16 +344,17 @@ export default function Home() {
       </section>
 
       {/* Newsletter */}
-      <section className="py-24 sm:py-32">
+      <section className="border-t border-brand-950/10 bg-cream py-24 sm:py-32">
         <Container className="flex flex-col items-center gap-8 text-center">
           <Reveal>
             <SectionHeading
               eyebrow="Stay in the loop"
               title="Not ready to commit? Get updates as MIS 1.0 comes together."
+              light
             />
           </Reveal>
           <Reveal delay={100}>
-            <NewsletterForm />
+            <NewsletterForm light />
           </Reveal>
         </Container>
       </section>

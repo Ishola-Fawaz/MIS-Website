@@ -23,20 +23,12 @@ export const CAPACITY_FACTS = [
 
 export const WHY_BLOCKS = [
   {
-    title: "Why now",
-    body: "AI and product cycles are moving faster than at any point in the industry's history, and the rooms where that direction gets set rarely include Muslim builders. This is one of those rooms.",
+    title: "Why now, why a room",
+    body: "AI and product cycles are moving faster than at any point in the industry's history, and the rooms where that direction gets set rarely include Muslim builders. MIS 1.0 is our answer to that — one day, one room in Ogbomoso, built around talks, panels, and a hands-on buildathon, where founders, engineers, and builders actually meet the people worth meeting instead of just following them online.",
   },
   {
-    title: "Why a room, not a feed",
-    body: "Timelines and group chats are useful, but they don't build trust the way a shared room does. One day, in person, with the people actually shipping — that's the format that produces real collaborations, not just follows.",
-  },
-  {
-    title: "Why faith-rooted",
-    body: "The schedule is built around prayer, not around it. Catering is halal by default, not by request. This isn't a tech event that happens to have Muslim attendees — it's built around how we actually want to gather.",
-  },
-  {
-    title: "Why start at 150 seats",
-    body: "We could have promised a bigger number and under-delivered. Instead we picked a room size that lets every attendee actually meet the people worth meeting. MIS 2.0 grows from what MIS 1.0 proves.",
+    title: "Why faith-rooted, why 150 seats",
+    body: "The schedule is built around prayer, not around it, and catering is halal by default, not by request — this is a tech event built around how Muslim builders actually want to gather. We capped it at 150 seats on purpose: small enough that every attendee gets real access to the room, not just a badge. MIS 2.0 grows from what MIS 1.0 proves.",
   },
 ];
 
