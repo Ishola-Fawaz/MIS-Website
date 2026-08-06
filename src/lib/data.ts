@@ -23,11 +23,11 @@ export const CAPACITY_FACTS = [
 
 export const WHY_BLOCKS = [
   {
-    title: "Why now, why a room",
+    title: "Why now",
     body: "AI and product cycles are moving faster than at any point in the industry's history, and the rooms where that direction gets set rarely include Muslim builders. MIS 1.0 is our answer to that — one day, one room in Ogbomoso, built around talks, panels, and a hands-on buildathon, where founders, engineers, and builders actually meet the people worth meeting instead of just following them online.",
   },
   {
-    title: "Why faith-rooted, why 150 seats",
+    title: "Why faith-rooted",
     body: "The schedule is built around prayer, not around it, and catering is halal by default, not by request — this is a tech event built around how Muslim builders actually want to gather. We capped it at 150 seats on purpose: small enough that every attendee gets real access to the room, not just a badge. MIS 2.0 grows from what MIS 1.0 proves.",
   },
 ];

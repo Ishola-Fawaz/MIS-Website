@@ -24,6 +24,7 @@ import Button from "@/components/Button";
 import Countdown from "@/components/Countdown";
 import Faq from "@/components/Faq";
 import AmbientMark from "@/components/AmbientMark";
+import CountUp from "@/components/CountUp";
 import NewsletterForm from "@/components/NewsletterForm";
 import TicketTiers from "@/components/TicketTiers";
 import Reveal from "@/components/Reveal";
@@ -90,7 +91,7 @@ export default function Home() {
 
           <p className="max-w-2xl text-lg leading-8 text-cream-dim">
             MIS 1.0 is the founding edition of the Muslim Innovators
-            Summit &mdash; a day of talks, panels, and a buildathon for
+            Summit a day of talks, panels, and a buildathon for
             Muslim founders, engineers, and builders in tech. Small on
             purpose.
           </p>
@@ -131,11 +132,19 @@ export default function Home() {
             const Icon = CAPACITY_ICONS[index];
             return (
               <Reveal key={fact.label} delay={index * 80}>
-                <div className="flex flex-col items-center gap-2 text-center">
-                  <Icon size={22} className="text-brand-600" />
-                  <span className="font-mono text-3xl font-semibold text-brand-700 sm:text-4xl">
-                    {fact.value}
-                  </span>
+                <div
+                  className="group flex flex-col items-center gap-2 text-center"
+                  aria-label={`${fact.value} — ${fact.label}`}
+                >
+                  <Icon
+                    size={22}
+                    className="text-brand-600 transition-transform duration-300 group-hover:scale-110"
+                  />
+                  <span className="sr-only">{fact.value}</span>
+                  <CountUp
+                    value={fact.value}
+                    className="font-mono text-3xl font-semibold text-brand-700 tabular-nums transition-transform duration-300 sm:text-4xl group-hover:scale-105"
+                  />
                   <span className="text-sm text-brand-600/80">{fact.label}</span>
                 </div>
               </Reveal>
