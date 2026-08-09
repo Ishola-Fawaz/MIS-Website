@@ -196,7 +196,7 @@ export default function Home() {
             <SectionHeading
               eyebrow="Format"
               title="What actually happens in the room."
-              description="One day, one room, four blocks — built for depth, not a packed agenda."
+              description="One day, one room, four blocks built for depth, not a packed agenda."
             />
           </Reveal>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -262,7 +262,7 @@ export default function Home() {
             <SectionHeading
               eyebrow="Get Involved"
               title="MIS 1.0's lineup and crew aren't set yet."
-              description="No speakers are confirmed and no volunteer team is locked in — because we're building both from scratch, with you."
+              description="No speakers are confirmed and no volunteer team is locked in because we're building both from scratch, with you."
               light
             />
           </Reveal>
