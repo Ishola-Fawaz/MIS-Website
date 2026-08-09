@@ -34,7 +34,7 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 p-4">
       <div
-        className={`relative mx-auto flex items-center justify-between border transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+        className={`relative z-50 mx-auto flex items-center justify-between border transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
           scrolled
             ? "mt-2 h-16 max-w-4xl rounded-full border-white/10 bg-brand-950/60 px-3 backdrop-blur-2xl backdrop-saturate-150 md:px-4"
             : "mt-0 h-20 max-w-6xl rounded-2xl border-transparent bg-brand-950/80 px-5 backdrop-blur-md md:px-8"
