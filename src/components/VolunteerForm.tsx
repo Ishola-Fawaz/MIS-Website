@@ -29,6 +29,7 @@ import {
   Wrench02Icon,
 } from "hugeicons-react";
 import Reveal from "./Reveal";
+import { submitVolunteerApplication } from "@/app/volunteer/actions";
 
 type Role = { label: string; icon: typeof Megaphone01Icon };
 type Category = { title: string; icon: typeof Megaphone01Icon; roles: Role[] };
@@ -93,6 +94,8 @@ export default function VolunteerForm() {
   const [selectedRoles, setSelectedRoles] = useState<Set<string>>(new Set());
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   function toggleRole(categoryTitle: string, role: string) {
     const next = new Set(selectedRoles);
@@ -111,9 +114,30 @@ export default function VolunteerForm() {
     setActiveCategory(null);
   }
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setSubmitted(true);
+    if (!activeCategory) return;
+    setSubmitting(true);
+    setError(null);
+    try {
+      const result = await submitVolunteerApplication({
+        name,
+        email,
+        phone,
+        availability,
+        department: activeCategory,
+        roles: Array.from(selectedRoles),
+      });
+      if (result.ok) {
+        setSubmitted(true);
+      } else {
+        setError(result.error);
+      }
+    } catch {
+      setError("Something went wrong — please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   const canSubmit =
@@ -130,9 +154,8 @@ export default function VolunteerForm() {
         </h3>
         <p className="max-w-md text-sm leading-6 text-cream-dim">
           We&apos;ve got your interest in {selectedRoles.size} role
-          {selectedRoles.size === 1 ? "" : "s"} on record. We&apos;re still
-          finalizing how volunteer applications come together — we&apos;ll
-          reach out at {email} once the team is being locked in.
+          {selectedRoles.size === 1 ? "" : "s"} on file. The organizing team
+          will reach out at {email} once roles are being confirmed.
         </p>
         <div className="flex flex-wrap justify-center gap-2 pt-2">
           {Array.from(selectedRoles).map((role) => (
@@ -148,6 +171,7 @@ export default function VolunteerForm() {
           type="button"
           onClick={() => {
             setSubmitted(false);
+            setError(null);
             clearDepartment();
             setName("");
             setEmail("");
@@ -314,15 +338,20 @@ export default function VolunteerForm() {
             : `${selectedRoles.size} role${
                 selectedRoles.size === 1 ? "" : "s"
               } selected in ${activeCategory}.`}{" "}
-          We&apos;re still finalizing how applications come together —
-          nothing is sent anywhere yet.
+          Submitting saves your application for the organizing team to
+          review.
         </p>
+        {error && (
+          <p className="text-sm text-red-400" role="alert">
+            {error}
+          </p>
+        )}
         <button
           type="submit"
-          disabled={!canSubmit}
+          disabled={!canSubmit || submitting}
           className="group inline-flex items-center justify-center gap-2 rounded-full bg-gold-400 px-6 py-3 text-sm font-semibold tracking-wide text-brand-950 shadow-[0_0_0_1px_rgba(212,162,76,0.4)] transition-all duration-200 hover:scale-[1.03] hover:bg-gold-300 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:scale-100"
         >
-          Apply to Volunteer
+          {submitting ? "Submitting…" : "Apply to Volunteer"}
           <SentIcon
             size={16}
             className="transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-0.5"
