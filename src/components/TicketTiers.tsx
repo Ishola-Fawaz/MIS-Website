@@ -1,10 +1,10 @@
 import { ArrowRight02Icon, CheckmarkCircle02Icon, StarIcon } from "hugeicons-react";
 import Button from "./Button";
-import { EVENT, TICKETS } from "@/lib/data";
+import { TICKETS } from "@/lib/data";
 
 export default function TicketTiers() {
   return (
-    <div className="grid gap-6 lg:grid-cols-3">
+    <div className="grid gap-6 lg:grid-cols-2">
       {TICKETS.map((ticket) => (
         <div
           key={ticket.name}
@@ -42,9 +42,7 @@ export default function TicketTiers() {
             <p className="text-xs text-cream-dim/70">{ticket.note}</p>
           )}
           <Button
-            href={`mailto:${EVENT.ticketsEmail}?subject=${encodeURIComponent(
-              `${ticket.name} ticket — MIS 1.0`
-            )}`}
+            href={ticket.paymentLink}
             variant={ticket.highlighted ? "primary" : "secondary"}
             className="mt-auto w-full"
           >

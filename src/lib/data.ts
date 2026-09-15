@@ -85,12 +85,13 @@ export type TicketTier = {
   features: string[];
   note?: string;
   highlighted?: boolean;
+  paymentLink: string;
 };
 
 export const TICKETS: TicketTier[] = [
   {
     name: "Early Bird",
-    price: "₦10,000",
+    price: "₦2,000",
     description: "Limited to the first 50 seats sold.",
     note: "Ends whenever seat 50 sells — not on a fixed date.",
     features: [
@@ -99,10 +100,11 @@ export const TICKETS: TicketTier[] = [
       "Halal meals included",
       "Mentorship sign-up access",
     ],
+    paymentLink: "https://paystack.com/pay/REPLACE_WITH_EARLY_BIRD_LINK",
   },
   {
     name: "MIS 1.0",
-    price: "₦20,000",
+    price: "₦3,000",
     description: "Standard entry to the founding edition.",
     highlighted: true,
     features: [
@@ -111,17 +113,7 @@ export const TICKETS: TicketTier[] = [
       "MIS 1.0 attendee badge",
       "First invite to MIS 2.0",
     ],
-  },
-  {
-    name: "Founding Patron",
-    price: "₦75,000",
-    description: "Directly fund the first cohort.",
-    features: [
-      "Everything in MIS 1.0",
-      "Reserved front-row seating",
-      "Named as a Founding Patron",
-      "Private founders' dinner the evening before",
-    ],
+    paymentLink: "https://paystack.com/pay/REPLACE_WITH_MIS_1_0_LINK",
   },
 ];
 

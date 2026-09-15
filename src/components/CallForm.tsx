@@ -3,6 +3,7 @@
 import { FormEvent, useState } from "react";
 import { SentIcon } from "hugeicons-react";
 import Button from "./Button";
+import { submitCallFormEntry } from "@/app/speak/actions";
 
 export type CallFormField = {
   name: string;
@@ -13,11 +14,13 @@ export type CallFormField = {
 };
 
 export default function CallForm({
+  formType,
   recipientEmail,
   subjectPrefix,
   fields,
   submitLabel,
 }: {
+  formType: string;
   recipientEmail: string;
   subjectPrefix: string;
   fields: CallFormField[];
@@ -25,10 +28,20 @@ export default function CallForm({
 }) {
   const [values, setValues] = useState<Record<string, string>>({});
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const name = values["name"] || "Someone";
     const subject = `${subjectPrefix} — ${name}`;
+    const labeledFields = Object.fromEntries(
+      fields.map((field) => [field.label, values[field.name] || ""])
+    );
+
+    try {
+      await submitCallFormEntry(formType, labeledFields);
+    } catch {
+      // Persistence is best-effort — the mailto fallback below still reaches the team.
+    }
+
     const body = fields
       .map((field) => `${field.label}: ${values[field.name] || "—"}`)
       .join("\n\n");

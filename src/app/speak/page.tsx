@@ -24,6 +24,7 @@ export default function SpeakPage() {
         </Reveal>
         <Reveal delay={100} className="flex w-full justify-center">
           <CallForm
+            formType="speaker"
             recipientEmail={EVENT.speakersEmail}
             subjectPrefix="Speaker application"
             submitLabel="Apply to Speak"
