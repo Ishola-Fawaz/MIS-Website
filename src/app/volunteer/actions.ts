@@ -1,6 +1,6 @@
 "use server";
 
-import { supabaseAdmin } from "@/lib/supabase-admin";
+import { withDb } from "@/lib/db";
 
 export type VolunteerApplicationInput = {
   name: string;
@@ -26,16 +26,15 @@ export async function submitVolunteerApplication(
     return { ok: false, error: "Please fill in all required fields." };
   }
 
-  const { error } = await supabaseAdmin.from("volunteer_applications").insert({
-    name,
-    email,
-    phone,
-    availability: input.availability.trim() || null,
-    department,
-    roles,
-  });
-
-  if (error) {
+  try {
+    await withDb((db) =>
+      db.query(
+        `insert into volunteer_applications (name, email, phone, availability, department, roles)
+         values ($1, $2, $3, $4, $5, $6)`,
+        [name, email, phone, input.availability.trim() || null, department, roles]
+      )
+    );
+  } catch {
     return { ok: false, error: "Something went wrong — please try again." };
   }
 

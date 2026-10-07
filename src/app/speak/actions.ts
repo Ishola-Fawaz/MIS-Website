@@ -1,14 +1,16 @@
 "use server";
 
-import { supabaseAdmin } from "@/lib/supabase-admin";
+import { withDb } from "@/lib/db";
 
 export async function submitCallFormEntry(formType: string, fields: Record<string, string>) {
-  const { error } = await supabaseAdmin.from("call_form_submissions").insert({
-    form_type: formType,
-    fields,
-  });
-
-  if (error) {
-    console.error("Failed to save call form submission:", error.message);
+  try {
+    await withDb((db) =>
+      db.query(
+        `insert into call_form_submissions (form_type, fields) values ($1, $2::jsonb)`,
+        [formType, JSON.stringify(fields)]
+      )
+    );
+  } catch (error) {
+    console.error("Failed to save call form submission:", error);
   }
 }

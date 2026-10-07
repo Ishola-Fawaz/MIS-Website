@@ -1,7 +1,7 @@
 import crypto from "crypto";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { supabaseAdmin } from "@/lib/supabase-admin";
+import { withDb } from "@/lib/db";
 import { TICKETS } from "@/lib/data";
 
 function resolveTier(amountKobo: number | undefined) {
@@ -41,22 +41,34 @@ export async function POST(request: NextRequest) {
   }
 
   const data = event.data;
-  const { error } = await supabaseAdmin.from("ticket_orders").upsert(
-    {
-      reference: data.reference,
-      status: data.status,
-      email: data.customer?.email ?? null,
-      amount_kobo: data.amount ?? null,
-      currency: data.currency ?? null,
-      tier: resolveTier(data.amount),
-      paid_at: data.paid_at ?? null,
-      raw_payload: event,
-    },
-    { onConflict: "reference" }
-  );
 
-  if (error) {
-    console.error("Failed to save ticket order:", error.message);
+  try {
+    await withDb((db) =>
+      db.query(
+        `insert into ticket_orders (reference, status, email, amount_kobo, currency, tier, paid_at, raw_payload)
+         values ($1, $2, $3, $4, $5, $6, $7, $8::jsonb)
+         on conflict (reference) do update set
+           status = excluded.status,
+           email = excluded.email,
+           amount_kobo = excluded.amount_kobo,
+           currency = excluded.currency,
+           tier = excluded.tier,
+           paid_at = excluded.paid_at,
+           raw_payload = excluded.raw_payload`,
+        [
+          data.reference,
+          data.status,
+          data.customer?.email ?? null,
+          data.amount ?? null,
+          data.currency ?? null,
+          resolveTier(data.amount),
+          data.paid_at ?? null,
+          JSON.stringify(event),
+        ]
+      )
+    );
+  } catch (error) {
+    console.error("Failed to save ticket order:", error);
     return NextResponse.json({ error: "Failed to persist" }, { status: 500 });
   }
 

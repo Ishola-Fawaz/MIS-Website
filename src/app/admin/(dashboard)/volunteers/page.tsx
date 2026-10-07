@@ -1,11 +1,11 @@
-import { supabaseAdmin } from "@/lib/supabase-admin";
+import { withDb } from "@/lib/db";
 import { formatDateTime } from "@/lib/admin-format";
 
 export const dynamic = "force-dynamic";
 
 type VolunteerApplication = {
   id: string;
-  created_at: string;
+  created_at: Date;
   name: string;
   email: string;
   phone: string;
@@ -15,17 +15,23 @@ type VolunteerApplication = {
 };
 
 export default async function AdminVolunteersPage() {
-  const { data, error } = await supabaseAdmin
-    .from("volunteer_applications")
-    .select("*")
-    .order("created_at", { ascending: false })
-    .returns<VolunteerApplication[]>();
+  let applications: VolunteerApplication[] = [];
+  let loadError: string | null = null;
 
-  if (error) {
-    return <p className="text-sm text-red-400">Failed to load volunteers: {error.message}</p>;
+  try {
+    applications = await withDb(async (db) => {
+      const { rows } = await db.query<VolunteerApplication>(
+        `select * from volunteer_applications order by created_at desc`
+      );
+      return rows;
+    });
+  } catch (error) {
+    loadError = error instanceof Error ? error.message : "Unknown error";
   }
 
-  const applications = data ?? [];
+  if (loadError) {
+    return <p className="text-sm text-red-400">Failed to load volunteers: {loadError}</p>;
+  }
 
   return (
     <div className="flex flex-col gap-4">

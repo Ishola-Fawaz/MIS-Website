@@ -3,13 +3,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { ArrowRight02Icon, Cancel01Icon, Menu02Icon } from "hugeicons-react";
-import Button from "./Button";
+import { /* ArrowRight02Icon, */ Cancel01Icon, Menu02Icon } from "hugeicons-react";
+// import Button from "./Button";
 
 const NAV_LINKS = [
   { href: "/#why", label: "Why" },
   { href: "/#format", label: "Format" },
-  { href: "/#tickets", label: "Tickets" },
+  // { href: "/#tickets", label: "Tickets" },
   { href: "/#faq", label: "FAQ" },
 ];
 
@@ -70,6 +70,7 @@ export default function Navbar() {
           ))}
         </nav>
 
+        {/* Not releasing yet
         <div className="hidden lg:block">
           <Button href="/register" className="px-5 py-2.5">
             Get Tickets
@@ -79,6 +80,7 @@ export default function Navbar() {
             />
           </Button>
         </div>
+        */}
 
         {/* Mobile toggle */}
         <button
@@ -126,6 +128,7 @@ export default function Navbar() {
             </Link>
           ))}
         </div>
+        {/* Not releasing yet
         <div className="relative flex flex-col gap-3 px-8 pb-12">
           <Button
             href="/register"
@@ -136,6 +139,7 @@ export default function Navbar() {
             <ArrowRight02Icon size={16} />
           </Button>
         </div>
+        */}
       </div>
     </header>
   );

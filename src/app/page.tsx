@@ -1,11 +1,11 @@
 import Link from "next/link";
 import {
   ArrowDown01Icon,
-  ArrowRight02Icon,
+  // ArrowRight02Icon,
   Building05Icon,
   ChartLineData02Icon,
   CodeCircleIcon,
-  Clock01Icon,
+  // Clock01Icon,
   Idea01Icon,
   LaptopProgrammingIcon,
   Location01Icon,
@@ -20,13 +20,13 @@ import {
 } from "hugeicons-react";
 import Container from "@/components/Container";
 import SectionHeading from "@/components/SectionHeading";
-import Button from "@/components/Button";
-import Countdown from "@/components/Countdown";
+// import Button from "@/components/Button";
+// import Countdown from "@/components/Countdown";
 import Faq from "@/components/Faq";
 import AmbientMark from "@/components/AmbientMark";
 import CountUp from "@/components/CountUp";
-import NewsletterForm from "@/components/NewsletterForm";
-import TicketTiers from "@/components/TicketTiers";
+// import NewsletterForm from "@/components/NewsletterForm";
+// import TicketTiers from "@/components/TicketTiers";
 import Reveal from "@/components/Reveal";
 import {
   EVENT,
@@ -85,7 +85,7 @@ export default function Home() {
           </span>
 
           <h1 className="max-w-4xl font-heading text-4xl font-semibold leading-[1.1] tracking-tight text-cream sm:text-6xl">
-            150 seats. One room.{" "}
+            250 seats. One room.{" "}
             <span className="text-gold-300">Ogbomoso.</span>
           </h1>
 
@@ -96,6 +96,7 @@ export default function Home() {
             purpose.
           </p>
 
+          {/* Not releasing yet
           <Button href="/register">
             Get Your Ticket
             <ArrowRight02Icon
@@ -103,6 +104,7 @@ export default function Home() {
               className="transition-transform duration-200 group-hover:translate-x-1"
             />
           </Button>
+          */}
 
           <Link
             href="#why"
@@ -115,6 +117,7 @@ export default function Home() {
             />
           </Link>
 
+          {/* Not releasing yet
           <div className="mt-4 flex flex-col items-center gap-3">
             <span className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-cream-dim">
               <Clock01Icon size={14} className="text-gold-300" />
@@ -122,6 +125,7 @@ export default function Home() {
             </span>
             <Countdown />
           </div>
+          */}
         </Container>
       </section>
 
@@ -256,6 +260,7 @@ export default function Home() {
       </section>
 
       {/* Get involved */}
+      {/* Not releasing yet
       <section className="border-t border-brand-950/10 bg-cream py-24 sm:py-32">
         <Container className="flex flex-col gap-16">
           <Reveal>
@@ -312,14 +317,16 @@ export default function Home() {
           </div>
         </Container>
       </section>
+      */}
 
       {/* Tickets */}
+      {/* Not releasing yet
       <section id="tickets" className="py-24 sm:py-32">
         <Container className="flex flex-col gap-16">
           <Reveal>
             <SectionHeading
               eyebrow="Tickets"
-              title="150 seats total. Once they're gone, that's it for MIS 1.0."
+              title="250 seats total. Once they're gone, that's it for MIS 1.0."
               description={`${EVENT.dateLabel} · ${EVENT.city} · Prices in NGN`}
             />
           </Reveal>
@@ -328,8 +335,10 @@ export default function Home() {
           </Reveal>
         </Container>
       </section>
+      */}
 
       {/* Sponsor CTA */}
+      {/* Not releasing yet
       <section className="border-t border-brand-950/10 bg-cream py-24 sm:py-32">
         <Container className="flex flex-col items-center gap-6 text-center">
           <Reveal>
@@ -351,8 +360,10 @@ export default function Home() {
           </Reveal>
         </Container>
       </section>
+      */}
 
       {/* Newsletter */}
+      {/* Not releasing yet
       <section className="border-t border-brand-950/10 bg-cream py-24 sm:py-32">
         <Container className="flex flex-col items-center gap-8 text-center">
           <Reveal>
@@ -367,6 +378,7 @@ export default function Home() {
           </Reveal>
         </Container>
       </section>
+      */}
 
       {/* FAQ */}
       <section id="faq" className="border-t border-white/5 bg-brand-900/30 py-24 sm:py-32">

@@ -1,31 +1,38 @@
-import { supabaseAdmin } from "@/lib/supabase-admin";
+import { withDb } from "@/lib/db";
 import { formatDateTime, formatNaira } from "@/lib/admin-format";
 
 export const dynamic = "force-dynamic";
 
 type TicketOrder = {
   id: string;
-  created_at: string;
+  created_at: Date;
   reference: string;
   status: string;
   email: string | null;
   amount_kobo: number | null;
   tier: string | null;
-  paid_at: string | null;
+  paid_at: Date | null;
 };
 
 export default async function AdminTicketsPage() {
-  const { data, error } = await supabaseAdmin
-    .from("ticket_orders")
-    .select("id, created_at, reference, status, email, amount_kobo, tier, paid_at")
-    .order("created_at", { ascending: false })
-    .returns<TicketOrder[]>();
+  let orders: TicketOrder[] = [];
+  let loadError: string | null = null;
 
-  if (error) {
-    return <p className="text-sm text-red-400">Failed to load ticket orders: {error.message}</p>;
+  try {
+    orders = await withDb(async (db) => {
+      const { rows } = await db.query<TicketOrder>(
+        `select id, created_at, reference, status, email, amount_kobo, tier, paid_at
+         from ticket_orders order by created_at desc`
+      );
+      return rows;
+    });
+  } catch (error) {
+    loadError = error instanceof Error ? error.message : "Unknown error";
   }
 
-  const orders = data ?? [];
+  if (loadError) {
+    return <p className="text-sm text-red-400">Failed to load ticket orders: {loadError}</p>;
+  }
 
   return (
     <div className="flex flex-col gap-4">

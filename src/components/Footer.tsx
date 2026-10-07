@@ -5,7 +5,7 @@ import {
   ArrowRight02Icon,
   Compass01Icon,
   Mail01Icon,
-  UserGroup03Icon,
+  // UserGroup03Icon,
 } from "hugeicons-react";
 import Container from "./Container";
 import { EVENT } from "@/lib/data";
@@ -14,14 +14,15 @@ const EXPLORE_LINKS = [
   { href: "/#why", label: "Why MIS 1.0" },
   { href: "/#format", label: "What happens in the room" },
   { href: "/#who", label: "Who it's for" },
-  { href: "/#tickets", label: "Tickets" },
+  // { href: "/#tickets", label: "Tickets" },
   { href: "/#faq", label: "FAQ" },
 ];
 
-const INVOLVED_LINKS = [
-  { href: "/speak", label: "Apply to speak" },
-  { href: "/volunteer", label: "Apply to volunteer" },
-];
+// Not releasing yet
+// const INVOLVED_LINKS = [
+//   { href: "/speak", label: "Apply to speak" },
+//   { href: "/volunteer", label: "Apply to volunteer" },
+// ];
 
 const LEGAL_LINKS = [
   { href: "/code-of-conduct", label: "Code of Conduct" },
@@ -32,7 +33,7 @@ const LEGAL_LINKS = [
 export default function Footer() {
   return (
     <footer className="border-t border-white/5 bg-brand-950">
-      <Container className="grid gap-12 py-16 sm:grid-cols-2 lg:grid-cols-5">
+      <Container className="grid gap-12 py-16 sm:grid-cols-2 lg:grid-cols-4">
         <div className="flex flex-col gap-4 sm:col-span-2 lg:col-span-2">
           <Link href="/" className="group flex w-fit items-center">
             <Image
@@ -70,6 +71,7 @@ export default function Footer() {
           ))}
         </div>
 
+        {/* Not releasing yet
         <div className="flex flex-col gap-3">
           <h3 className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-gold-300">
             <UserGroup03Icon size={14} />
@@ -99,6 +101,7 @@ export default function Footer() {
             />
           </a>
         </div>
+        */}
 
         <div className="flex flex-col gap-3">
           <h3 className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-gold-300">
