@@ -1,28 +1,26 @@
-import { supabaseAdmin } from "@/lib/supabase-admin";
+import { withDb } from "@/lib/db";
 import { EVENT } from "@/lib/data";
 
 export const dynamic = "force-dynamic";
 
 async function getCounts() {
-  const [volunteers, speakers, tickets] = await Promise.all([
-    supabaseAdmin
-      .from("volunteer_applications")
-      .select("*", { count: "exact", head: true }),
-    supabaseAdmin
-      .from("call_form_submissions")
-      .select("*", { count: "exact", head: true })
-      .eq("form_type", "speaker"),
-    supabaseAdmin
-      .from("ticket_orders")
-      .select("*", { count: "exact", head: true })
-      .eq("status", "success"),
-  ]);
+  return withDb(async (db) => {
+    const [volunteers, speakers, tickets] = await Promise.all([
+      db.query<{ count: string }>(`select count(*) from volunteer_applications`),
+      db.query<{ count: string }>(
+        `select count(*) from call_form_submissions where form_type = 'speaker'`
+      ),
+      db.query<{ count: string }>(
+        `select count(*) from ticket_orders where status = 'success'`
+      ),
+    ]);
 
-  return {
-    volunteers: volunteers.count ?? 0,
-    speakers: speakers.count ?? 0,
-    ticketsSold: tickets.count ?? 0,
-  };
+    return {
+      volunteers: Number(volunteers.rows[0].count),
+      speakers: Number(speakers.rows[0].count),
+      ticketsSold: Number(tickets.rows[0].count),
+    };
+  });
 }
 
 export default async function AdminOverviewPage() {

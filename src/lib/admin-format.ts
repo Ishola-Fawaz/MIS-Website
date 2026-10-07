@@ -1,4 +1,4 @@
-export function formatDateTime(iso: string) {
+export function formatDateTime(iso: string | Date) {
   return new Date(iso).toLocaleString("en-NG", {
     dateStyle: "medium",
     timeStyle: "short",

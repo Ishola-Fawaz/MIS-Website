@@ -1,19 +1,14 @@
 import type { Metadata } from "next";
-import { Geist_Mono } from "next/font/google";
+import { GeistMono } from "geist/font/mono";
 import { clashDisplay, satoshi } from "@/fonts";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import "./globals.css";
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 const siteUrl = "https://misummit.org";
 const title = "Muslim Innovators Summit — MIS 1.0";
 const description =
-  "150 seats. One room. Ogbomoso. MIS 1.0 is the founding edition of the Muslim Innovators Summit — a day of talks, panels, and a buildathon for Muslim founders, engineers, and builders in tech.";
+  "250 seats. One room. Ogbomoso. MIS 1.0 is the founding edition of the Muslim Innovators Summit — a day of talks, panels, and a buildathon for Muslim founders, engineers, and builders in tech.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -49,7 +44,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${clashDisplay.variable} ${satoshi.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${clashDisplay.variable} ${satoshi.variable} ${GeistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-brand-950 font-sans text-cream">
         <Navbar />

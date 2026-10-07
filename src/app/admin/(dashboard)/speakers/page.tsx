@@ -1,28 +1,33 @@
-import { supabaseAdmin } from "@/lib/supabase-admin";
+import { withDb } from "@/lib/db";
 import { formatDateTime } from "@/lib/admin-format";
 
 export const dynamic = "force-dynamic";
 
 type CallFormSubmission = {
   id: string;
-  created_at: string;
+  created_at: Date;
   form_type: string;
   fields: Record<string, string>;
 };
 
 export default async function AdminSpeakersPage() {
-  const { data, error } = await supabaseAdmin
-    .from("call_form_submissions")
-    .select("*")
-    .eq("form_type", "speaker")
-    .order("created_at", { ascending: false })
-    .returns<CallFormSubmission[]>();
+  let submissions: CallFormSubmission[] = [];
+  let loadError: string | null = null;
 
-  if (error) {
-    return <p className="text-sm text-red-400">Failed to load speaker submissions: {error.message}</p>;
+  try {
+    submissions = await withDb(async (db) => {
+      const { rows } = await db.query<CallFormSubmission>(
+        `select * from call_form_submissions where form_type = 'speaker' order by created_at desc`
+      );
+      return rows;
+    });
+  } catch (error) {
+    loadError = error instanceof Error ? error.message : "Unknown error";
   }
 
-  const submissions = data ?? [];
+  if (loadError) {
+    return <p className="text-sm text-red-400">Failed to load speaker submissions: {loadError}</p>;
+  }
 
   const columns: string[] = [];
   for (const sub of submissions) {
