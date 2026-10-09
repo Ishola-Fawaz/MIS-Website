@@ -1,7 +1,7 @@
 import Link from "next/link";
 import {
   ArrowDown01Icon,
-  // ArrowRight02Icon,
+  ArrowRight02Icon,
   Building05Icon,
   ChartLineData02Icon,
   CodeCircleIcon,
@@ -20,7 +20,7 @@ import {
 } from "hugeicons-react";
 import Container from "@/components/Container";
 import SectionHeading from "@/components/SectionHeading";
-// import Button from "@/components/Button";
+import Button from "@/components/Button";
 // import Countdown from "@/components/Countdown";
 import Faq from "@/components/Faq";
 import AmbientMark from "@/components/AmbientMark";
@@ -260,7 +260,6 @@ export default function Home() {
       </section>
 
       {/* Get involved */}
-      {/* Not releasing yet
       <section className="border-t border-brand-950/10 bg-cream py-24 sm:py-32">
         <Container className="flex flex-col gap-16">
           <Reveal>
@@ -272,6 +271,7 @@ export default function Home() {
             />
           </Reveal>
           <div className="grid gap-6 sm:grid-cols-2">
+            {/* Not releasing yet
             <Reveal>
               <div className="flex h-full flex-col items-start gap-4 rounded-2xl border border-brand-950/10 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-brand-500/40 hover:shadow-md">
                 <span className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-950/5 text-brand-600">
@@ -293,7 +293,8 @@ export default function Home() {
                 </Button>
               </div>
             </Reveal>
-            <Reveal delay={80}>
+            */}
+            <Reveal>
               <div className="flex h-full flex-col items-start gap-4 rounded-2xl border border-brand-950/10 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-brand-500/40 hover:shadow-md">
                 <span className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-950/5 text-brand-600">
                   <UserGroup03Icon size={20} />
@@ -317,7 +318,6 @@ export default function Home() {
           </div>
         </Container>
       </section>
-      */}
 
       {/* Tickets */}
       {/* Not releasing yet
